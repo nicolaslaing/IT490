@@ -1,0 +1,18 @@
+{
+  "name": "musicrepeater",
+  "version": "1.0.0",
+  "description": "IT490 project",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
