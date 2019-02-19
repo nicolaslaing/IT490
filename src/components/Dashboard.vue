@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="dashboard">
     <h1>Music Repeater</h1>
     <p>Congrats! You logged in</p>
     <button type="button" v-on:click.stop.prevent="sendLog">Send Audit Log</button><br><br>
@@ -30,5 +30,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .dashboard {
+    height: 100vh;
+    
+    /*color: white;*/
+    text-align: center;
+  }
 </style>

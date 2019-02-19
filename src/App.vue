@@ -20,5 +20,7 @@ export default {
   text-align: left;
   color: #2c3e50;
   background: #b9dfea;
+  margin-top: -2%;
+  padding: 3px;
 }
 </style>
