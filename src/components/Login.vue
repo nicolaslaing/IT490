@@ -1,9 +1,13 @@
 <template>
   <div class="login">
-    <h1>Music Repeater</h1>
-    <input id="username" type="text" v-model.lazy="login.username" placeholder="Enter Username"><br>
-    <input id="password" type="password" v-model.lazy="login.password" placeholder="Enter Password"><br>
-    <button id="submit" type="button" name="submit" v-on:click.stop.prevent="doLogin">Login</button>
+    
+    <div id="login-box">
+      <h1>Music Repeater</h1>
+      <input id="username" type="text" v-model.lazy="login.username" placeholder="Enter Username"><br>
+      <input id="password" type="password" v-model.lazy="login.password" placeholder="Enter Password"><br>
+      <button id="submit" type="button" name="submit" v-on:click.stop.prevent="doLogin">Login</button><br>
+    </div>
+
   </div>
 </template>
 
@@ -44,18 +48,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h1, h2 {
-    font-weight: normal;
+  .login {
+    height: 100vh;
+    /*margin: auto;*/
+    color: white;
+    text-align: center;
   }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
+  #login-box {
+    margin: auto;
+    top: 150px;
+    background-color: rgba(75,75,75,0.65);
+    border-radius: 10%;
+    border: 2px solid black;
+    padding: 10px;
+    width: 350px;
+    position: relative;
   }
 </style>
