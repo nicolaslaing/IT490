@@ -3,12 +3,13 @@
     <h1>Music Repeater</h1>
     <input id="username" type="text" v-model.lazy="login.username" placeholder="Enter Username"><br>
     <input id="password" type="password" v-model.lazy="login.password" placeholder="Enter Password"><br>
-    <button id="submit" type="button" name="Submit" v-on:click.stop.prevent="login">Login</button>
+    <button id="submit" type="button" name="submit" v-on:click.stop.prevent="doLogin">Login</button>
   </div>
 </template>
 
 <script>
 export default {
+  /* eslint-disable */
   name: 'Login',
   data () {
     return {
@@ -18,21 +19,24 @@ export default {
       }
     }
   },
-  created(){
+  created() {
 
   },
   methods: {
-    login(){
+    doLogin: function() {
       let self = this
-      this.axios.post('', this.login)
-      .then(function(response){
-        self.$router.push({
-          name: 'Dashboard'
-        })
+      self.$router.push({
+        name: 'Dashboard'
       })
-      .catch(function(error){
-        console.log(error)
-      })
+      // this.axios.post('', this.login)
+      // .then(function(response){
+      //   self.$router.push({
+      //     name: 'Dashboard'
+      //   })
+      // })
+      // .catch(function(error){
+      //   console.log(error)
+      // })
     },
   },
 }
