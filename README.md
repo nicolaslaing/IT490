@@ -1,6 +1,6 @@
 # musicrepeater
 
-> IT 490 Project
+> IT490 Project
 
 ## Build Setup
 

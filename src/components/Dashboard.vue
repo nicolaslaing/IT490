@@ -8,22 +8,44 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   /* eslint-disable */
   name: 'Dashboard',
   data () {
     return {
-      
+      user: '',
     }
   },
   created() {
-
+    this.getData()
+    this.user = this.$cookies.get("User")
   },
   methods: {
     sendLog() {
-      // let self = this
-      console.log("HELLO!")
-    }
+      let self = this
+      let logData = {
+        'userid': this.user.id
+      }
+      axios.post('http://localhost/log', logData)
+      .then(function(response){
+        console.log(response)
+        
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    },
+    getData() {
+      axios.get('http://localhost/api')
+      .then(function(response){
+        console.log(response)
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    },
   },
 }
 </script>
@@ -32,7 +54,6 @@ export default {
 <style scoped>
   .dashboard {
     height: 100vh;
-    
     /*color: white;*/
     text-align: center;
   }
