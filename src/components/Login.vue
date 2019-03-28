@@ -57,52 +57,6 @@ export default {
         console.log(error)
         self.error = "Username or password was incorrect"
       })
-      // var q = 'tasks';
-      // let options = {
-      //   protocol: 'amqp',
-      //   hostname: 'localhost',
-      //   port: 5672,
-      //   username: 'guest',
-      //   password: 'guest',
-      //   locale: 'en_US',
-      //   frameMax: 0,
-      //   heartbeat: 0,
-      //   vhost: '/',
-      // }
- 
-      // var open = require('amqplib').connect('amqp://localhost', options);
-      // console.log(open)
-
-      // // Publisher
-      // open.then(function(conn) {
-      //   console.log("test1", conn)
-      //   return conn.createChannel();
-      // }).then(function(ch) {
-      //   console.log(ch)
-      //   return ch.assertQueue(q).then(function(ok) {
-      //     return ch.sendToQueue(q, Buffer.from('something to do'));
-      //   });
-      // }).catch(function(error){
-      //   console.log(error)
-      // });
-       
-      // // Consumer
-      // open.then(function(conn) {
-      //   console.log("test2", conn)
-      //   return conn.createChannel();
-      // }).then(function(ch) {
-      //   console.log(ch)
-      //   return ch.assertQueue(q).then(function(ok) {
-      //     return ch.consume(q, function(msg) {
-      //       if (msg !== null) {
-      //         console.log(msg.content.toString());
-      //         ch.ack(msg);
-      //       }
-      //     });
-      //   });
-      // }).catch(function(error){
-      //   console.log(error)
-      // });
     },
   },
 }
