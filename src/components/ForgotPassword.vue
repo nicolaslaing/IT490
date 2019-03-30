@@ -129,8 +129,7 @@ export default {
   }
   #login-box {
     position: fixed;
-    margin-left: 30%;
-    margin-right: 25%;
+    margin-left: 34%;
     bottom: 15%;
     background-color: rgba(75,75,75,0.65);
     border-radius: 10%;
