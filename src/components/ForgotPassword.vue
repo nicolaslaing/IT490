@@ -99,8 +99,7 @@ export default {
         })
       })
       .catch(function(error){
-        console.log(error)
-        self.error = "Error resetting password"
+        self.error = error.response.data
       })
     },
     cancel: function() {
