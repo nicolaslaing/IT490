@@ -4,7 +4,19 @@
     
     <form id="login-box" @submit.prevent="doForgotUsername">
       <h1>Music Repeater</h1>
-      <input id="email" type="text" v-model.lazy="email" placeholder="Enter Email"><br>
+      <hr>
+      <h3>Forgot Username</h3>
+
+      <p style="text-align: left; margin-left: 20px;">
+        Please enter your email address to retrieve your username.
+        You will be returned to the login screen, and your username will be displayed.
+      </p>
+
+      <br>
+
+      <input id="email" type="text" v-model.lazy="email" placeholder="Enter Email">
+      
+      <br><br>
 
       <button id="cancel" type="button" name="cancel" v-on:click.stop.prevent="cancel">Cancel</button>
       <button id="submit" type="submit" name="submit" v-on:click.stop.prevent="doForgotUsername">Submit</button><br><br>
@@ -25,6 +37,7 @@ export default {
   data () {
     return {
       email: '',
+      error: '',
     }
   },
   created() {
@@ -33,22 +46,22 @@ export default {
   methods: {
     doForgotUsername(){
       let self = this
-      axios.post('http://localhost/forgotusername', this.email)
+      axios.post('http://localhost/forgotusername', { "email": this.email })
       .then(function(response){
         self.$router.push({
           name: 'Login',
-          params: { emailSubmitted: true }
+          params: { displayUsername: response.data.username }
         })
       })
       .catch(function(error){
         console.log(error)
-        self.error = "Email does not exist"
+        self.error = error
       })
     },
     cancel: function() {
       this.$router.push({
           name: 'Login',
-          params: { emailSubmitted: false }
+          params: { displayUsername: null }
       })
     }
   },
@@ -64,13 +77,14 @@ export default {
     text-align: center;
   }
   #login-box {
-    margin: auto;
-    top: 150px;
+    position: fixed;
+    margin-left: 30%;
+    margin-right: 25%;
+    bottom: 15%;
     background-color: rgba(75,75,75,0.65);
     border-radius: 10%;
     border: 2px solid black;
     padding: 10px;
     width: 350px;
-    position: relative;
   }
 </style>

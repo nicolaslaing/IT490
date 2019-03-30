@@ -19,7 +19,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  background: #b9dfea;
+  background: #1c6eb1;
   margin-top: -2%;
   padding: 3px;
 }
