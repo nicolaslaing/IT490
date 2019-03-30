@@ -99,13 +99,14 @@ export default {
     border-radius: 20px;
   }
   #login-box {
-    margin: auto;
-    top: 150px;
+    position: fixed;
+    margin-left: 30%;
+    margin-right: 25%;
+    bottom: 15%;
     background-color: rgba(75,75,75,0.65);
     border-radius: 10%;
     border: 2px solid black;
     padding: 10px;
     width: 350px;
-    position: relative;
   }
 </style>

@@ -21,7 +21,7 @@
       <button id="cancel" type="button" name="cancel" v-on:click.stop.prevent="cancel">Cancel</button>
       <button id="submit" type="submit" name="submit" v-on:click.stop.prevent="doForgotUsername">Submit</button><br><br>
 
-      <div v-if="error != ''">{{error}}</div>
+      <div class="error" v-if="error != ''">{{error}}</div>
     </form>
 
   </div>
@@ -54,8 +54,7 @@ export default {
         })
       })
       .catch(function(error){
-        console.log(error)
-        self.error = error
+        self.error = error.response.data
       })
     },
     cancel: function() {
@@ -75,6 +74,12 @@ export default {
     /*margin: auto;*/
     color: white;
     text-align: center;
+  }
+  .error {
+    color: red;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
   }
   #login-box {
     position: fixed;
