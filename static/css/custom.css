@@ -1,0 +1,10 @@
+div, select, input {
+    font-family: Verdana;
+}
+.main-body {
+    height: 100vh;
+    width: 190vh;
+    margin: auto;
+    background-color: rgb(219, 245, 245);
+    text-align: center;
+}

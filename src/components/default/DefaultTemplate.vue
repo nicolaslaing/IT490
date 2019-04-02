@@ -9,9 +9,8 @@
       <!-- page content -->
       <div role="main">
         <div class="jumbotron">
-          <!-- <h1 class="display-5">Welcome to Music Repeater!</h1> -->
-
           <p class="lead">
+            <!-- <img id="logo" src="../../assets/MusicRepeater-Logo.png" style="opacity:50%;"> -->
             <component v-bind:is="currentView"></component>
           </p>
         </div>

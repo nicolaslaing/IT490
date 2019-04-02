@@ -2,7 +2,11 @@
   <div>
     <div id="background">
       <img id="header" src="../../assets/MusicRepeater-Header.jpg">
-      <div id="seperator"></div>
+      <div id="seperator">
+
+        <Search></Search>
+
+      </div>
     </div>
     
   </div>
@@ -10,10 +14,14 @@
 
 <script>
 import axios from 'axios'
+import Search from '../Search'
 
 export default {
   /* eslint-disable */
   name: 'DefaultHeader',
+  components: {
+    "Search": Search,
+  },
   data () {
     return {
 
@@ -42,7 +50,7 @@ export default {
   }
   #seperator {
     width: 100%; 
-    height: 20px; 
+    height: 70px; 
     background-color: rgb(59, 48, 48);
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="main-body">
     <h1>Music Repeater</h1>
     <p>Congrats! You logged in</p>
     <button type="button" v-on:click.stop.prevent="sendLog">Send Audit Log</button><br><br>
@@ -54,7 +54,10 @@ export default {
 <style scoped>
   .dashboard {
     height: 100vh;
-    /*color: white;*/
+    width: 190vh;
+    margin: auto;
+    /* color: white; */
+    background-color: rgb(219, 245, 245);
     text-align: center;
   }
 </style>

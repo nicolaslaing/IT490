@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
     <!-- <img src="./assets/logo.png"> -->
     <router-view/>
   </div>
