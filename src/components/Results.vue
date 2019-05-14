@@ -3,13 +3,17 @@
         <table v-if="searchResults != null" style="margin: auto;">
             <thead>
                 <tr>
-                    <td>Name</td>
+                    <td v-if="searchResults.resultPage[0].entityType == 'artist'">Name</td>
+                    <td v-if="searchResults.resultPage[0].entityType == 'performance'">Title</td>
+                    <td v-if="searchResults.resultPage[0].entityType == 'performance'">Singer</td>
                     <td>API URI</td>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="result in searchResults.resultPage">
-                    <td style="cursor: pointer;" @click="getArtistDetails(result.entityId)">{{result.commonName}}</td>
+                    <td v-if="result.commonName != undefined" style="cursor: pointer;" @click="getArtistDetails(result.entityId)">{{result.commonName}}</td>
+                    <td v-if="result.title != undefined">{{result.title}}</td>
+                    <td v-if="result.title != undefined">{{result.performer.name}}</td>
                     <td><a target="_blank" :href="result.uri">{{result.uri}}</a></td>
                 </tr>
             </tbody>
@@ -39,7 +43,8 @@
                 <tbody>
                     <tr v-for="member in artistDetails.relations">
                         <td>{{member.artist.commonName}}</td>
-                        <td>{{member.comments}}</td>
+                        <td v-if="member.comments != null">{{member.comments}}</td>
+                        <td v-else>No data</td>
                     </tr>
                 </tbody>
             </table><br><br>
@@ -54,7 +59,7 @@ import axios from 'axios'
 export default {
   /* eslint-disable */
   name: 'Dashboard',
-  props: ["searchResults", "artistDetails", "getArtistDetails"],
+  props: ["entityType", "searchResults", "artistDetails", "getArtistDetails"],
   data () {
     return {
 

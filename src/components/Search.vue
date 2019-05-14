@@ -37,7 +37,12 @@ export default {
     search(){
       let query = {
         "entityType": this.entityType,
-        "params": "commonName=" + this.query
+        "params": ""
+      }
+      if(this.entityType == "artist"){
+        query.params = "commonName=" + this.query
+      } else if(this.entityType == "performance"){
+        query.params = "title=" + this.query
       }
       let self = this
 
