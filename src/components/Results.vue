@@ -29,7 +29,7 @@
                     </tr>
                 </tbody>
             </table><br>
-            <table style="margin: auto;">
+            <table v-if="artistDetails.relations.length > 0" style="margin: auto;">
                 <thead>
                     <tr>
                         <td>Band Members</td>
@@ -54,10 +54,10 @@ import axios from 'axios'
 export default {
   /* eslint-disable */
   name: 'Dashboard',
-  props: ["searchResults"],
+  props: ["searchResults", "artistDetails", "getArtistDetails"],
   data () {
     return {
-        artistDetails: null,
+
     }
   },
   created() {
@@ -67,17 +67,6 @@ export default {
       clearResults(){
         this.searchResults = null
         this.artistDetails = null
-      },
-      getArtistDetails(entityId){
-        this.artistDetails = null
-        let self = this
-        axios.get('http://localhost/artist/'+entityId)
-        .then(function(response){
-            self.artistDetails = response.data
-        })
-        .catch(function(error){
-            console.log(error)
-        })
       },
   },
 }

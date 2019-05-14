@@ -1,7 +1,7 @@
 <template>
   <div class="main-body">
     <!-- <button type="button" v-on:click.stop.prevent="sendLog">Send Audit Log</button><br><br> -->
-    <Results v-if="searchResults != null" :searchResults="searchResults"></Results>
+    <Results v-if="searchResults != null" :getArtistDetails="getArtistDetails" :artistDetails="artistDetails" :searchResults="searchResults"></Results>
   </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
     return {
       user: '',
       searchResults: null,
+      artistDetails: null,
     }
   },
   created() {
@@ -32,6 +33,18 @@ export default {
   methods: {
     populateResults(results){
       this.searchResults = results
+      this.artistDetails = null
+    },
+    getArtistDetails(entityId){
+      this.artistDetails = null
+      let self = this
+      axios.get('http://localhost/artist/'+entityId)
+      .then(function(response){
+          self.artistDetails = response.data
+      })
+      .catch(function(error){
+          console.log(error)
+      })
     },
     sendLog() {
       let self = this
