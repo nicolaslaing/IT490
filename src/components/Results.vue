@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <table v-if="showArtists" style="margin: auto; padding-top: 10px;">
+    <div style="padding-top: 20px;">
+        <table v-if="searchResults != null" style="margin: auto;">
             <thead>
                 <tr>
                     <td>Name</td>
@@ -8,26 +8,43 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-if="searchResults != null" v-for="result in searchResults.resultPage">
+                <tr v-for="result in searchResults.resultPage">
                     <td style="cursor: pointer;" @click="getArtistDetails(result.entityId)">{{result.commonName}}</td>
                     <td><a target="_blank" :href="result.uri">{{result.uri}}</a></td>
                 </tr>
             </tbody>
         </table><br><br>
-        <table v-if="showArtistDetails" style="margin: auto; padding-top: 10px;">
-            <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Comments</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{artistDetails.commonName}}</td>
-                    <td>{{artistDetails.comments}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div v-if="artistDetails != null">
+            <table style="margin: auto;">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Comments</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{artistDetails.commonName}}</td>
+                        <td>{{artistDetails.comments}}</td>
+                    </tr>
+                </tbody>
+            </table><br>
+            <table style="margin: auto;">
+                <thead>
+                    <tr>
+                        <td>Band Members</td>
+                        <td>Comments</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="member in artistDetails.relations">
+                        <td>{{member.artist.commonName}}</td>
+                        <td>{{member.comments}}</td>
+                    </tr>
+                </tbody>
+            </table><br><br>
+        </div>
+        <button v-if="searchResults != null || artistDetails != null" style="margin: auto;" type="button" @click="clearResults">Reset</button>
     </div>
 </template>
 
@@ -40,8 +57,6 @@ export default {
   props: ["searchResults"],
   data () {
     return {
-        showArtists: true,
-        showArtistDetails: false,
         artistDetails: null,
     }
   },
@@ -49,15 +64,16 @@ export default {
     // console.log(this.searchResults)
   },
   methods: {
+      clearResults(){
+        this.searchResults = null
+        this.artistDetails = null
+      },
       getArtistDetails(entityId){
         this.artistDetails = null
-        this.showArtistDetails = false
         let self = this
         axios.get('http://localhost/artist/'+entityId)
         .then(function(response){
-            console.log(response.data)
             self.artistDetails = response.data
-            self.showArtistDetails = true
         })
         .catch(function(error){
             console.log(error)
@@ -75,5 +91,12 @@ export default {
     }
     table, th, td {
         border: 1px solid black;
+    }
+    thead td {
+        font-weight: bold;
+        background-color: rgb(151, 190, 190);
+    }
+    tbody tr:hover {
+        background-color: rgb(197, 184, 184);
     }
 </style>
