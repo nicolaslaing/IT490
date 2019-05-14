@@ -8,3 +8,7 @@ div, select, input {
     background-color: rgb(219, 245, 245);
     text-align: center;
 }
+.panel {
+    background-color: rgb(161, 184, 199);
+    
+}

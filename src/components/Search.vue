@@ -27,6 +27,7 @@ export default {
             "api_route": "",
             "api_params": "",
         },
+        searchResults: null,
     }
   },
   created() {
@@ -39,14 +40,23 @@ export default {
         "params": "commonName=" + this.query
       }
       let self = this
-  console.log(query)
+
       axios.post('http://localhost/search', query)
       .then(function(response){
-          EventBus.$emit("search-results", response.data)
-          // self.searchResults = response.data
+          self.searchResults = response.data
+
+          // parse the URI for the entity ID
+          for(let result in self.searchResults.resultPage){
+              let url = self.searchResults.resultPage[result].uri
+              let idStart = url.lastIndexOf("/")
+              let entityId = url.substring(idStart+1)
+              self.searchResults.resultPage[result].entityId = entityId
+          }
+
+          EventBus.$emit("search-results", self.searchResults)
       })
       .catch(function(error){
-          console.log(error.response.data)
+          console.log(error)
       })
     },
     searchPublish() {

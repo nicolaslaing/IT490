@@ -3,10 +3,10 @@
     <div id="background">
       <img id="header" src="../../assets/MusicRepeater-Header.jpg">
       <div id="seperator">
-
-        <router-link tag="button" :to="{name: 'Login'}" style="float: right;">Logout</router-link>
-        <Search></Search>
-
+        <div v-if="loggedIn">
+          <router-link tag="button" :to="{name: 'Login'}" v-on:click.native="logout" style="float: right;">Logout</router-link>
+          <Search></Search>
+        </div>
       </div>
     </div>
     
@@ -16,6 +16,7 @@
 <script>
 import axios from 'axios'
 import Search from '../Search'
+import { EventBus } from '@/plugins/event-bus.js'
 
 export default {
   /* eslint-disable */
@@ -25,14 +26,28 @@ export default {
   },
   data () {
     return {
-
+      loggedIn: false,
     }
   },
   created() {
-
+    let self = this
+    if(this.$cookies.get("User") != undefined){
+      this.loggedIn = true
+    }
+    EventBus.$on('logged-in', () => {
+      self.loggedIn = true
+    })
+  },
+  beforeDestroy(){
+    EventBus.$off('logged-in', () => {
+      self.loggedIn = true
+    })
   },
   methods: {
-
+    logout(){
+      this.$cookies.remove("User")
+      this.loggedIn = false
+    },
   },
 }
 </script>

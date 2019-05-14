@@ -28,6 +28,7 @@
 
 <script>
 import axios from 'axios'
+import { EventBus } from '@/plugins/event-bus.js'
 
 export default {
   /* eslint-disable */
@@ -50,7 +51,7 @@ export default {
       this.error = ''
       
       this.$route.params.didRegister = false
-      this.$route.params.displayUsername = ''
+      this.$route.params.displayUsername = null
       this.$route.params.passwordReset = false
       
       if(this.login.username == "" || this.login.password == ""){
@@ -64,6 +65,7 @@ export default {
         self.$router.push({
           name: 'Dashboard'
         })
+        EventBus.$emit("logged-in")
       })
       .catch(function(error){
         console.log(error)

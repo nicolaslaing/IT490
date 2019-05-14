@@ -1,7 +1,7 @@
 <template>
   <div class="main-body">
     <!-- <button type="button" v-on:click.stop.prevent="sendLog">Send Audit Log</button><br><br> -->
-    <Results :searchResults="searchResults"></Results>
+    <Results v-if="searchResults != null" :searchResults="searchResults"></Results>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   data () {
     return {
       user: '',
-      searchResults: {},
+      searchResults: null,
     }
   },
   created() {
