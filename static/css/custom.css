@@ -3,7 +3,7 @@ div, select, input {
 }
 .main-body {
     height: 100vh;
-    width: 190vh;
+    width: 75vh;
     margin: auto;
     background-color: rgb(219, 245, 245);
     text-align: center;

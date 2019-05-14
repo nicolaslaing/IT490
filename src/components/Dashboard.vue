@@ -1,28 +1,38 @@
 <template>
   <div class="main-body">
-    <h1>Music Repeater</h1>
-    <p>Congrats! You logged in</p>
-    <button type="button" v-on:click.stop.prevent="sendLog">Send Audit Log</button><br><br>
-    <router-link :to="{name: 'Login'}">Logout</router-link>
+    <!-- <button type="button" v-on:click.stop.prevent="sendLog">Send Audit Log</button><br><br> -->
+    <Results :searchResults="searchResults"></Results>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Results from './Results'
+import { EventBus } from '@/plugins/event-bus.js'
 
 export default {
   /* eslint-disable */
   name: 'Dashboard',
+  components:{
+    "Results": Results,
+  },
   data () {
     return {
       user: '',
+      searchResults: {},
     }
   },
   created() {
-    this.getData()
     this.user = this.$cookies.get("User")
+    EventBus.$on('search-results', this.populateResults)
+  },
+  beforeDestroy(){
+    EventBus.$off('search-results', this.populateResults)
   },
   methods: {
+    populateResults(results){
+      this.searchResults = results
+    },
     sendLog() {
       let self = this
       let logData = {
@@ -54,7 +64,7 @@ export default {
 <style scoped>
   .dashboard {
     height: 100vh;
-    width: 190vh;
+    width: 100vh;
     margin: auto;
     /* color: white; */
     background-color: rgb(219, 245, 245);

@@ -4,6 +4,7 @@
       <img id="header" src="../../assets/MusicRepeater-Header.jpg">
       <div id="seperator">
 
+        <router-link tag="button" :to="{name: 'Login'}" style="float: right;">Logout</router-link>
         <Search></Search>
 
       </div>
